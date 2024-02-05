@@ -1,6 +1,7 @@
 
 using ImageMagick;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 
 namespace Picture_transformations
@@ -37,7 +38,8 @@ namespace Picture_transformations
         {
             listBox1.HorizontalScrollbar = true;
             listBox2.HorizontalScrollbar = true;
-
+            label2.MaximumSize = new Size(165, 0);
+            label4.MaximumSize = new Size(165, 0);
 
         }
 
@@ -53,12 +55,16 @@ namespace Picture_transformations
 
         Thread thread;
         private void button3_Click(object sender, EventArgs e)
+        { 
+            
+            threadstart();
+        }
+
+        private void threadstart()
         {
-
             Control.CheckForIllegalCrossThreadCalls = false;
-thread= new Thread(thread1);
+            thread = new Thread(thread1);
             thread.Start();
-
         }
 
         public void thread1()
@@ -66,9 +72,7 @@ thread= new Thread(thread1);
             int ss = 1;
             foreach (string filename in Directory.GetFiles(HEIC_Folder))
             {
-                //  fileInfo = new FileInfo(filename);
-                // fileInfo.Name
-                if (filename.Split(".").Last().ToUpper() == gbox1)
+                if (filename.Split(".").Last().ToUpper(new CultureInfo("en-EN", false)) == gbox1)
                 {
                     listBox1.Items.Add(filename);
                     transform(filename);
@@ -175,19 +179,20 @@ thread= new Thread(thread1);
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
+            Environment.Exit(0);
 
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-
+            Environment.Exit(0);
 
         }
 
         private void button4_Click(object sender, EventArgs e)
-        {        
-             Environment.Exit(0);Application.Exit();
+        {
+            Environment.Exit(0); Application.Exit();
         }
+
     }
 }
