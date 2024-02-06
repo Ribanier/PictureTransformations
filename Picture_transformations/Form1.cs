@@ -72,7 +72,7 @@ namespace Picture_transformations
             int ss = 1;
             foreach (string filename in Directory.GetFiles(HEIC_Folder))
             {
-                if (filename.Split(".").Last().ToUpper(new CultureInfo("en-EN", false)) == gbox1)
+                if (filename.Split(".").Last().ToUpper(new CultureInfo("en-US", false)) == gbox1)
                 {
                     listBox1.Items.Add(filename);
                     transform(filename);
