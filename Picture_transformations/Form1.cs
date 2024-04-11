@@ -13,20 +13,36 @@ namespace Picture_transformations
             InitializeComponent();
         }
         FolderBrowserDialog folderBrowserDialog;
+        OpenFileDialog openFileDialog;
         FileInfo fileInfo;
 
-        string HEIC_Folder;
-        string JPEG_folder;
-        string gbox1 = "HEIC";
-        string gbox2 = ".JPEG";
+        string sourceFolder;
+        string saveFolder;
+        string cBox1 = "ALL";
+        string cBox2 = ".AAI";
 
         private void button1_Click(object sender, EventArgs e)
         {
+            listBox1.Items.Clear();
+            openFileDialog = new OpenFileDialog();
+            openFileDialog.Multiselect = true;
+            openFileDialog.ShowDialog();
+            if (openFileDialog.FileNames != null)
+            {
 
-            folderBrowserDialog = new FolderBrowserDialog();
-            folderBrowserDialog.ShowDialog();
-            HEIC_Folder = folderBrowserDialog.SelectedPath;
-            label2.Text = HEIC_Folder;
+
+                foreach (var item in openFileDialog.FileNames)
+                {
+                    listBox1.Items.Add(item);
+                }
+                saveFolder = new FileInfo(listBox1.Items[0].ToString()).DirectoryName;
+                label4.Text= saveFolder;
+                label3.Text = listBox1.Items.Count.ToString();
+            }
+            /*   folderBrowserDialog = new FolderBrowserDialog();
+               folderBrowserDialog.ShowDialog();
+               sourceFolder = folderBrowserDialog.SelectedPath;
+               label2.Text = sourceFolder;*/
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -36,10 +52,22 @@ namespace Picture_transformations
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            comboBox1.Items.Add("ALL");
+            comboBox1.SelectedIndex = 0;
+
+            StreamReader sr = new StreamReader("ext.txt");
+            string line = sr.ReadLine();
+            while (line != null)
+            {
+                comboBox1.Items.Add(line);
+                comboBox2.Items.Add(line);
+                line = sr.ReadLine();
+
+            }
+
+            comboBox2.SelectedIndex = 0;
             listBox1.HorizontalScrollbar = true;
             listBox2.HorizontalScrollbar = true;
-            label2.MaximumSize = new Size(165, 0);
-            label4.MaximumSize = new Size(165, 0);
 
         }
 
@@ -47,17 +75,18 @@ namespace Picture_transformations
         {
             folderBrowserDialog = new FolderBrowserDialog();
             folderBrowserDialog.ShowDialog();
-            JPEG_folder = folderBrowserDialog.SelectedPath;
-            label4.Text = JPEG_folder;
+
+            saveFolder = folderBrowserDialog.SelectedPath==""?saveFolder:folderBrowserDialog.SelectedPath;
+            label4.Text = saveFolder;
 
 
         }
 
         Thread thread;
         private void button3_Click(object sender, EventArgs e)
-        { 
-            
+        {
             threadstart();
+
         }
 
         private void threadstart()
@@ -69,75 +98,43 @@ namespace Picture_transformations
 
         public void thread1()
         {
-            int ss = 1;
-            foreach (string filename in Directory.GetFiles(HEIC_Folder))
+           
+            foreach (string filename in listBox1.Items)
             {
-                if (filename.Split(".").Last().ToUpper(new CultureInfo("en-US", false)) == gbox1)
-                {
-                    listBox1.Items.Add(filename);
+                if (cBox1 == "ALL")
                     transform(filename);
-                    label6.Text = ss++.ToString();
+
+
+                if (filename.Split(".").Last().ToUpper(new CultureInfo("en-US", false)) == cBox1.ToUpper(new CultureInfo("en-US", false)))
+                {
+                    transform(filename);                   
                 }
 
             }
 
         }
+        int numberOfConverted = 1;
         public void transform(string filename)
         {
-            FileInfo info = new FileInfo(filename);
-            using (MagickImage image = new MagickImage(info.FullName))
+            try
             {
-                // Save frame as jpg
-                image.Write(JPEG_folder + @"\" + info.Name.Split(".")[0] + gbox2);
-                //   image.Write(info.FullName.Split(@"\").Last() + gbox2);
-
-                listBox2.Items.Add(JPEG_folder + @"\" + info.Name.Split(".")[0] + gbox2);
+                FileInfo info = new FileInfo(filename);
+                using (MagickImage image = new MagickImage(info.FullName))
+                {
+                    // Save frame as          
+                    image.Write(saveFolder + @"\" + info.Name.Split(".")[0] + cBox2);
+                    listBox2.Items.Add(saveFolder + @"\" + info.Name.Split(".")[0] + cBox2);
+                    label6.Text = numberOfConverted.ToString();
+                    numberOfConverted++;
+                }
             }
-        }
+            catch
+            {
 
-
-
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-            gbox1 = "HEIC";
-        }
-
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
-        {
-            gbox1 = "PNG";
-        }
-
-        private void radioButton3_CheckedChanged(object sender, EventArgs e)
-        {
-            gbox1 = "JPG";
-        }
-
-        private void radioButton4_CheckedChanged(object sender, EventArgs e)
-        {
-            gbox1 = "JPEG";
-        }
-        private void radioButton9_CheckedChanged(object sender, EventArgs e)
-        {
-            gbox2 = ".JPG";
-        }
-
-        private void radioButton7_CheckedChanged(object sender, EventArgs e)
-        {
-            gbox2 = ".HEIC";
+            }
 
         }
 
-        private void radioButton8_CheckedChanged(object sender, EventArgs e)
-        {
-            gbox2 = ".PNG";
-
-        }
-
-        private void radioButton10_CheckedChanged(object sender, EventArgs e)
-        {
-            gbox2 = ".JPEG";
-
-        }
 
         private void label3_Click(object sender, EventArgs e)
         {
@@ -194,5 +191,20 @@ namespace Picture_transformations
             Environment.Exit(0); Application.Exit();
         }
 
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cBox1 = comboBox1.SelectedItem.ToString();
+
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cBox2 = "." + comboBox2.SelectedItem.ToString();
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }
