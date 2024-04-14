@@ -26,6 +26,19 @@ namespace Picture_transformations
             listBox1.Items.Clear();
             openFileDialog = new OpenFileDialog();
             openFileDialog.Multiselect = true;
+            openFileDialog.Filter = "Supported Files|*.aai;*.apng;*.art;*.arw;*.avi;*.avif;*.avs;*.bayer;*.bpg;*.bmp;*.bmp2;*.bmp3;" +
+                "*.brf;*.cals;*.cin;*.cip;*.cmyk;*.cmyka;*.cr2;*.crw;*.cube;*.cur;*.cut;*.dcm;*.dcr;*.dcx;*.dds;*.debug;*.dib;*.djvu;" +
+                "*.dmr;*.dng;*.dot;*.dpx;*.emf;*.epdf;*.epi;*.eps;*.eps2;*.eps3;*.epsf;*.epsi;*.ept;*.exr;*.farbfeld;*.fax;*.fits;*.fl32;" +
+                "*.flif;*.fpx;*.ftxt;*.gif;*.gplt;*.gray;*.graya;*.hdr;*.heic;*.hpgl;*.hrz;*.html;*.ico;*.info;*.isobrl;*.isobrl6;*.jbig;" +
+                "*.jng;*.jp2;*.jpt;*.j2c;*.j2k;*.jpeg;*.jpg;*.jxr;*.json;*.jxl;*.kernel;*.man;*.mat;*.miff;*.mono;*.mng;*.m2v;*.mpeg;*.mpc;" +
+                "*.mpo;*.mpr;*.mrw;*.msl;*.mtv;*.mvg;*.nef;*.orf;*.ora;*.otb;*.p7;*.palm;*.pam;*.clipboard;*.pbm;*.pcd;*.pcds;*.pcl;*.pcx;" +
+                "*.pdb;*.pdf;*.pef;*.pes;*.pfa;*.pfb;*.pfm;*.pgm;*.phm;*.picon;*.pict;*.pix;*.png;*.png8;*.png00;*.png24;*.png32;*.png48;" +
+                "*.png64;*.pnm;*.pocketmod;*.ppm;*.ps;*.ps2;*.ps3;*.psb;*.psd;*.ptif;*.pwp;*.qoi;*.rad;*.raf;*.raw;*.rgb;*.rgb565;*.rgba;" +
+                "*.rgf;*.rla;*.rle;*.sct;*.sfw;*.sgi;*.shtml;*.sid;*.mrsid;*.sparse-color;*.strimg;*.sun;*.svg;*.text;*.tga;*.tiff;*.tim;" +
+                "*.ttf;*.txt;*.ubrl;*.ubrl6;*.uhdr;*.uil;*.uyvy;*.vicar;*.video;*.viff;*.wbmp;*.wdp;*.webp;*.wmf;*.wpg;*.x;*.xbm;*.xcf;*.xpm;" +
+                "*.xwd;*.x3f;*.yaml;*.ycbcr;*.ycbcra;*.yuv;*.ashlar;*.canvas;*.caption;*.clip;*.clipboard;*.fractal;*.gradient;*.hald;" +
+                "*.histogram;*.inline;*.label;*.map;*.mask;*.matte;*.null;*.pango;*.plasma;*.preview;*.print;*.scan;*.radial_gradient;" +
+                "*.scanx;*.screenshot;*.stegano;*.tile;*.unique;*.vid;*.win;*.x;*.xc";
             openFileDialog.ShowDialog();
             if (openFileDialog.FileNames != null)
             {
@@ -103,10 +116,10 @@ namespace Picture_transformations
             {
                 if (cBox1 == "ALL")
                     transform(filename);
-
-
-                if (filename.Split(".").Last().ToUpper(new CultureInfo("en-US", false)) == cBox1.ToUpper(new CultureInfo("en-US", false)))
+           
+                else 
                 {
+                    if(filename.Split(".").Last().ToUpper(new CultureInfo("en-US", false)) == cBox1.ToUpper(new CultureInfo("en-US", false)))              
                     transform(filename);                   
                 }
 
@@ -128,9 +141,9 @@ namespace Picture_transformations
                     numberOfConverted++;
                 }
             }
-            catch
+            catch(Exception e)
             {
-
+                listBox2.Items.Add("This file cannot be converted to the selected extension.");
             }
 
         }
