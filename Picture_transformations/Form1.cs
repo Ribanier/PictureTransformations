@@ -173,9 +173,9 @@ namespace Picture_transformations
 
         private void listBox2_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            ProcessStartInfo pi = new ProcessStartInfo(listBox1.SelectedItem.ToString())
+            ProcessStartInfo pi = new ProcessStartInfo(listBox2.SelectedItem.ToString())
             {
-                Arguments = Path.GetFileName(listBox1.SelectedItem.ToString()),
+                Arguments = Path.GetFileName(listBox2.SelectedItem.ToString()),
                 UseShellExecute = true,
                 WindowStyle = ProcessWindowStyle.Normal,
                 Verb = "OPEN"
