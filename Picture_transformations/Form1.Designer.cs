@@ -42,6 +42,7 @@
             label2 = new Label();
             label4 = new Label();
             label3 = new Label();
+            label5 = new Label();
             SuspendLayout();
             // 
             // button1
@@ -81,7 +82,7 @@
             button3.Name = "button3";
             button3.Size = new Size(151, 23);
             button3.TabIndex = 9;
-            button3.Text = "Bul ve Dönüştür";
+            button3.Text = "Convert";
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
@@ -127,11 +128,11 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(293, 472);
+            label7.Location = new Point(323, 472);
             label7.Name = "label7";
-            label7.Size = new Size(92, 15);
+            label7.Size = new Size(62, 15);
             label7.TabIndex = 14;
-            label7.Text = "Dönüştürülenler";
+            label7.Text = "Converted";
             // 
             // button4
             // 
@@ -139,7 +140,7 @@
             button4.Name = "button4";
             button4.Size = new Size(158, 23);
             button4.TabIndex = 15;
-            button4.Text = "ÇIKIŞ";
+            button4.Text = "Exit";
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
             // 
@@ -176,11 +177,20 @@
             label3.Size = new Size(0, 15);
             label3.TabIndex = 19;
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(257, 617);
+            label5.Name = "label5";
+            label5.Size = new Size(0, 15);
+            label5.TabIndex = 20;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(392, 625);
+            ClientSize = new Size(392, 634);
+            Controls.Add(label5);
             Controls.Add(label3);
             Controls.Add(label4);
             Controls.Add(label2);
@@ -220,5 +230,6 @@
         private Label label2;
         private Label label4;
         private Label label3;
+        private Label label5;
     }
 }
