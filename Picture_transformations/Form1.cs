@@ -19,44 +19,48 @@ namespace Picture_transformations
 
         string sourceFolder;
         string saveFolder;
-        string cBox1 = "ALL";
+        string cBox1 = "All Extensions";
         string cBox2 = ".AAI";
 
         private void button1_Click(object sender, EventArgs e)
         {
-            listBox1.Items.Clear();
-            openFileDialog = new OpenFileDialog();
-            openFileDialog.Multiselect = true;
-            openFileDialog.Filter = "Supported Files|*.aai;*.apng;*.art;*.arw;*.avi;*.avif;*.avs;*.bayer;*.bpg;*.bmp;*.bmp2;*.bmp3;" +
-                "*.brf;*.cals;*.cin;*.cip;*.cmyk;*.cmyka;*.cr2;*.crw;*.cube;*.cur;*.cut;*.dcm;*.dcr;*.dcx;*.dds;*.debug;*.dib;*.djvu;" +
-                "*.dmr;*.dng;*.dot;*.dpx;*.emf;*.epdf;*.epi;*.eps;*.eps2;*.eps3;*.epsf;*.epsi;*.ept;*.exr;*.farbfeld;*.fax;*.fits;*.fl32;" +
-                "*.flif;*.fpx;*.ftxt;*.gif;*.gplt;*.gray;*.graya;*.hdr;*.heic;*.hpgl;*.hrz;*.html;*.ico;*.info;*.isobrl;*.isobrl6;*.jbig;" +
-                "*.jng;*.jp2;*.jpt;*.j2c;*.j2k;*.jpeg;*.jpg;*.jxr;*.json;*.jxl;*.kernel;*.man;*.mat;*.miff;*.mono;*.mng;*.m2v;*.mpeg;*.mpc;" +
-                "*.mpo;*.mpr;*.mrw;*.msl;*.mtv;*.mvg;*.nef;*.orf;*.ora;*.otb;*.p7;*.palm;*.pam;*.clipboard;*.pbm;*.pcd;*.pcds;*.pcl;*.pcx;" +
-                "*.pdb;*.pdf;*.pef;*.pes;*.pfa;*.pfb;*.pfm;*.pgm;*.phm;*.picon;*.pict;*.pix;*.png;*.png8;*.png00;*.png24;*.png32;*.png48;" +
-                "*.png64;*.pnm;*.pocketmod;*.ppm;*.ps;*.ps2;*.ps3;*.psb;*.psd;*.ptif;*.pwp;*.qoi;*.rad;*.raf;*.raw;*.rgb;*.rgb565;*.rgba;" +
-                "*.rgf;*.rla;*.rle;*.sct;*.sfw;*.sgi;*.shtml;*.sid;*.mrsid;*.sparse-color;*.strimg;*.sun;*.svg;*.text;*.tga;*.tiff;*.tim;" +
-                "*.ttf;*.txt;*.ubrl;*.ubrl6;*.uhdr;*.uil;*.uyvy;*.vicar;*.video;*.viff;*.wbmp;*.wdp;*.webp;*.wmf;*.wpg;*.x;*.xbm;*.xcf;*.xpm;" +
-                "*.xwd;*.x3f;*.yaml;*.ycbcr;*.ycbcra;*.yuv;*.ashlar;*.canvas;*.caption;*.clip;*.clipboard;*.fractal;*.gradient;*.hald;" +
-                "*.histogram;*.inline;*.label;*.map;*.mask;*.matte;*.null;*.pango;*.plasma;*.preview;*.print;*.scan;*.radial_gradient;" +
-                "*.scanx;*.screenshot;*.stegano;*.tile;*.unique;*.vid;*.win;*.x;*.xc";
-            openFileDialog.ShowDialog();
-            if (openFileDialog.FileNames != null)
+            try
             {
-
-
-                foreach (var item in openFileDialog.FileNames)
+                listBox1.Items.Clear();
+                openFileDialog = new OpenFileDialog();
+                openFileDialog.Multiselect = true;
+                openFileDialog.Filter = "Supported Files|*.aai;*.apng;*.art;*.arw;*.avi;*.avif;*.avs;*.bayer;*.bpg;*.bmp;*.bmp2;*.bmp3;" +
+                    "*.brf;*.cals;*.cin;*.cip;*.cmyk;*.cmyka;*.cr2;*.crw;*.cube;*.cur;*.cut;*.dcm;*.dcr;*.dcx;*.dds;*.debug;*.dib;*.djvu;" +
+                    "*.dmr;*.dng;*.dot;*.dpx;*.emf;*.epdf;*.epi;*.eps;*.eps2;*.eps3;*.epsf;*.epsi;*.ept;*.exr;*.farbfeld;*.fax;*.fits;*.fl32;" +
+                    "*.flif;*.fpx;*.ftxt;*.gif;*.gplt;*.gray;*.graya;*.hdr;*.heic;*.hpgl;*.hrz;*.html;*.ico;*.info;*.isobrl;*.isobrl6;*.jbig;" +
+                    "*.jng;*.jp2;*.jpt;*.j2c;*.j2k;*.jpeg;*.jpg;*.jxr;*.json;*.jxl;*.kernel;*.man;*.mat;*.miff;*.mono;*.mng;*.m2v;*.mpeg;*.mpc;" +
+                    "*.mpo;*.mpr;*.mrw;*.msl;*.mtv;*.mvg;*.nef;*.orf;*.ora;*.otb;*.p7;*.palm;*.pam;*.clipboard;*.pbm;*.pcd;*.pcds;*.pcl;*.pcx;" +
+                    "*.pdb;*.pdf;*.pef;*.pes;*.pfa;*.pfb;*.pfm;*.pgm;*.phm;*.picon;*.pict;*.pix;*.png;*.png8;*.png00;*.png24;*.png32;*.png48;" +
+                    "*.png64;*.pnm;*.pocketmod;*.ppm;*.ps;*.ps2;*.ps3;*.psb;*.psd;*.ptif;*.pwp;*.qoi;*.rad;*.raf;*.raw;*.rgb;*.rgb565;*.rgba;" +
+                    "*.rgf;*.rla;*.rle;*.sct;*.sfw;*.sgi;*.shtml;*.sid;*.mrsid;*.sparse-color;*.strimg;*.sun;*.svg;*.text;*.tga;*.tiff;*.tim;" +
+                    "*.ttf;*.txt;*.ubrl;*.ubrl6;*.uhdr;*.uil;*.uyvy;*.vicar;*.video;*.viff;*.wbmp;*.wdp;*.webp;*.wmf;*.wpg;*.x;*.xbm;*.xcf;*.xpm;" +
+                    "*.xwd;*.x3f;*.yaml;*.ycbcr;*.ycbcra;*.yuv;*.ashlar;*.canvas;*.caption;*.clip;*.clipboard;*.fractal;*.gradient;*.hald;" +
+                    "*.histogram;*.inline;*.label;*.map;*.mask;*.matte;*.null;*.pango;*.plasma;*.preview;*.print;*.scan;*.radial_gradient;" +
+                    "*.scanx;*.screenshot;*.stegano;*.tile;*.unique;*.vid;*.win;*.x;*.xc";
+                openFileDialog.ShowDialog();
+                if (openFileDialog.FileNames != null)
                 {
-                    listBox1.Items.Add(item);
+
+
+                    foreach (var item in openFileDialog.FileNames)
+                    {
+                        listBox1.Items.Add(item);
+                    }
+                    saveFolder = new FileInfo(listBox1.Items[0].ToString()).DirectoryName;
+                    label4.Text = saveFolder;
+                    label3.Text = listBox1.Items.Count.ToString();
                 }
-                saveFolder = new FileInfo(listBox1.Items[0].ToString()).DirectoryName;
-                label4.Text = saveFolder;
-                label3.Text = listBox1.Items.Count.ToString();
+                /*   folderBrowserDialog = new FolderBrowserDialog();
+                   folderBrowserDialog.ShowDialog();
+                   sourceFolder = folderBrowserDialog.SelectedPath;
+                   label2.Text = sourceFolder;*/
             }
-            /*   folderBrowserDialog = new FolderBrowserDialog();
-               folderBrowserDialog.ShowDialog();
-               sourceFolder = folderBrowserDialog.SelectedPath;
-               label2.Text = sourceFolder;*/
+            catch { }
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -66,7 +70,7 @@ namespace Picture_transformations
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            comboBox1.Items.Add("ALL");
+            comboBox1.Items.Add("All Extensions");
             comboBox1.SelectedIndex = 0;
 
             StreamReader sr = new StreamReader("ext.txt");
@@ -99,8 +103,12 @@ namespace Picture_transformations
         Thread thread;
         private void button3_Click(object sender, EventArgs e)
         {
-            threadstart();
-            label5.Text = "";
+            if (saveFolder != null)
+            {
+                threadstart();
+                label5.Text = "";
+            }
+            else { MessageBox.Show("Select the folder to save the converted images"); }
         }
 
         private void threadstart()
@@ -115,7 +123,7 @@ namespace Picture_transformations
 
             foreach (string filename in listBox1.Items)
             {
-                if (cBox1 == "ALL")
+                if (cBox1 == "All Extensions")
                     transform(filename);
 
                 else
@@ -220,9 +228,20 @@ namespace Picture_transformations
             cBox2 = "." + comboBox2.SelectedItem.ToString();
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
+        private void listBox1_DragEnter(object sender, DragEventArgs e)
         {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
+        }
 
+        private void listBox1_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            foreach (string file in files) listBox1.Items.Add(file);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            listBox1.Items.Clear();
         }
     }
 }

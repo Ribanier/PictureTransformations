@@ -36,27 +36,28 @@
             listBox2 = new ListBox();
             comboBox1 = new ComboBox();
             comboBox2 = new ComboBox();
-            label7 = new Label();
             button4 = new Button();
             label1 = new Label();
             label2 = new Label();
             label4 = new Label();
             label3 = new Label();
             label5 = new Label();
+            button5 = new Button();
             SuspendLayout();
             // 
             // button1
             // 
             button1.Location = new Point(12, 11);
             button1.Name = "button1";
-            button1.Size = new Size(372, 23);
+            button1.Size = new Size(340, 23);
             button1.TabIndex = 1;
-            button1.Text = "Select Images";
+            button1.Text = "Select Images or Drag and Drop";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
             // listBox1
             // 
+            listBox1.AllowDrop = true;
             listBox1.FormattingEnabled = true;
             listBox1.ItemHeight = 15;
             listBox1.Location = new Point(12, 40);
@@ -64,6 +65,8 @@
             listBox1.Size = new Size(372, 244);
             listBox1.TabIndex = 3;
             listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
+            listBox1.DragDrop += listBox1_DragDrop;
+            listBox1.DragEnter += listBox1_DragEnter;
             listBox1.MouseDoubleClick += listBox1_MouseDoubleClick;
             // 
             // button2
@@ -125,15 +128,6 @@
             comboBox2.TabIndex = 9;
             comboBox2.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
             // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(323, 472);
-            label7.Name = "label7";
-            label7.Size = new Size(62, 15);
-            label7.TabIndex = 14;
-            label7.Text = "Converted";
-            // 
             // button4
             // 
             button4.Location = new Point(227, 428);
@@ -185,11 +179,22 @@
             label5.Size = new Size(0, 15);
             label5.TabIndex = 20;
             // 
+            // button5
+            // 
+            button5.Location = new Point(359, 11);
+            button5.Name = "button5";
+            button5.Size = new Size(26, 23);
+            button5.TabIndex = 21;
+            button5.Text = "\U0001f9f9";
+            button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(392, 634);
+            Controls.Add(button5);
             Controls.Add(label5);
             Controls.Add(label3);
             Controls.Add(label4);
@@ -199,7 +204,6 @@
             Controls.Add(label1);
             Controls.Add(button4);
             Controls.Add(comboBox1);
-            Controls.Add(label7);
             Controls.Add(button1);
             Controls.Add(listBox2);
             Controls.Add(label6);
@@ -222,7 +226,6 @@
         private Button button3;
         private Label label6;
         private ListBox listBox2;
-        private Label label7;
         private Button button4;
         private ComboBox comboBox1;
         private ComboBox comboBox2;
@@ -231,5 +234,6 @@
         private Label label4;
         private Label label3;
         private Label label5;
+        private Button button5;
     }
 }
