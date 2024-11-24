@@ -72,7 +72,48 @@ namespace Picture_transformations
         {
             comboBox1.Items.Add("All Extensions");
             comboBox1.SelectedIndex = 0;
+            if (!File.Exists("ext.txt"))
+            {
+                // Dosya adý ve oluþturulacaðý yer
+                string dosyaYolu = "ext.txt";
 
+                // Dosyaya yazýlacak içerik
+                string[] dosyaFormatlari = {
+            "JPEG", "JPG", "PNG", "PDF", "HEIC", "GIF", "BMP", "WEBP", "AAI", "APNG", "ART",
+            "ARW", "AVI", "AVIF", "AVS", "BAYER", "BPG", "BMP", "BMP2", "BMP3", "BRF", "CALS",
+            "CIN", "CIP", "CMYK", "CMYKA", "CR2", "CRW", "CUBE", "CUR", "CUT", "DCM", "DCR",
+            "DCX", "DDS", "DEBUG", "DIB", "DJVU", "DMR", "DNG", "DOT", "DPX", "EMF", "EPDF",
+            "EPI", "EPS", "EPS2", "EPS3", "EPSF", "EPSI", "EPT", "EXR", "FARBFELD", "FAX",
+            "FITS", "FL32", "FLIF", "FPX", "FTXT", "GPLT", "GRAY", "GRAYA", "HDR", "HPGL",
+            "HRZ", "HTML", "ICO", "INFO", "ISOBRL", "ISOBRL6", "JBIG", "JNG", "JP2", "JPT",
+            "J2C", "J2K", "JXR", "JSON", "JXL", "KERNEL", "MAN", "MAT", "MIFF", "MONO", "MNG",
+            "M2V", "MPEG", "MPC", "MPO", "MPR", "MRW", "MSL", "MTV", "MVG", "NEF", "ORF", "ORA",
+            "OTB", "P7", "PALM", "PAM", "CLIPBOARD", "PBM", "PCD", "PCDS", "PCL", "PCX", "PDB",
+            "PEF", "PES", "PFA", "PFB", "PFM", "PGM", "PHM", "PICON", "PICT", "PIX", "PNG8",
+            "PNG00", "PNG24", "PNG32", "PNG48", "PNG64", "PNM", "POCKETMOD", "PPM", "PS", "PS2",
+            "PS3", "PSB", "PSD", "PTIF", "PWP", "QOI", "RAD", "RAF", "RAW", "RGB", "RGB565",
+            "RGBA", "RGF", "RLA", "RLE", "SCT", "SFW", "SGI", "SHTML", "SID", "MrSID",
+            "SPARSE-COLOR", "STRIMG", "SUN", "SVG", "TEXT", "TGA", "TIFF", "TIM", "TTF", "TXT",
+            "UBRL", "UBRL6", "UHDR", "UIL", "UYVY", "VICAR", "VIDEO", "VIFF", "WBMP", "WDP",
+            "WMF", "WPG", "X", "XBM", "XCF", "XPM", "XWD", "X3F", "YAML", "YCbCr", "YCbCrA",
+            "YUV", "ASHLAR", "CANVAS", "CAPTION", "CLIP", "CLIPBOARD", "FRACTAL", "GRADIENT",
+            "HALD", "HISTOGRAM", "INLINE", "LABEL", "MAP", "MASK", "MATTE", "NULL", "PANGO",
+            "PLASMA", "PREVIEW", "PRINT", "SCAN", "RADIAL_GRADIENT", "SCANX", "SCREENSHOT",
+            "STEGANO", "TILE", "UNIQUE", "VID", "WIN", "X", "XC"
+        };
+
+                try
+                {
+                    // Ýçeriði dosyaya satýr satýr yaz
+                    File.WriteAllLines(dosyaYolu, dosyaFormatlari);
+
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Bir hata oluþtu: " + ex.Message);
+                }
+            }
             StreamReader sr = new StreamReader("ext.txt");
             string line = sr.ReadLine();
             while (line != null)
