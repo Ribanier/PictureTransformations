@@ -188,8 +188,8 @@ namespace Picture_transformations
                 using (MagickImage image = new MagickImage(info.FullName))
                 {
                     // Save frame as          
-                    image.Write(saveFolder + @"\" + info.Name.Split(".")[0] + cBox2);
-                    listBox2.Items.Add(saveFolder + @"\" + info.Name.Split(".")[0] + cBox2);
+                    image.Write(saveFolder + @"\" + info.Name.Split(".")[0] + cBox2.ToLower(new CultureInfo("en-US", false)));
+                    listBox2.Items.Add(saveFolder + @"\" + info.Name.Split(".")[0] + cBox2.ToLower(new CultureInfo("en-US", false)));
                     label6.Text = numberOfConverted.ToString();
                     numberOfConverted++;
                 }
